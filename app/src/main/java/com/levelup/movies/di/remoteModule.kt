@@ -35,7 +35,7 @@ val remoteModule = module {
     single { provideGson() }
     single { provideHttpClient() }
     single { provideRetrofit(get(),get()) }
-    single { get<Retrofit>().create(MovieApi :: class.java) }
+    single { get<Retrofit>().create(MovieApi::class.java) }
     single { MovieService(get()) }
 
 }

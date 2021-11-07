@@ -1,6 +1,6 @@
 package com.levelup.movies.data.remote
 
-import com.levelup.movies.data.model.GenreResponse
+import com.levelup.movies.data.model.GenreListResponse
 import com.levelup.movies.data.model.MovieItemResponse
 import com.levelup.movies.data.model.MovieListResponse
 import retrofit2.Call
@@ -21,12 +21,10 @@ class MovieService (private val movieApi: MovieApi) {
     }
 
 
-    fun getSimilarMovie(id : Int) : Call<MovieListResponse>{
-        return movieApi.getSimilarMovie(id)
-    }
+    fun getSimilarMovies(id : Int) : Call<MovieListResponse> = movieApi.getSimilarMovies(id)
 
-    fun getGenreList() : Call<List<GenreResponse>>{
-        return movieApi.getGenreList()
-    }
+
+    fun getGenreList() : Call<GenreListResponse> = movieApi.getGenreList()
+
 
 }

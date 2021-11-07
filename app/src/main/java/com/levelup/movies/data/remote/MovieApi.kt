@@ -1,6 +1,7 @@
 package com.levelup.movies.data.remote
 
-import com.levelup.movies.data.model.GenreResponse
+import com.levelup.movies.data.model.GenreItem
+import com.levelup.movies.data.model.GenreListResponse
 import com.levelup.movies.data.model.MovieItemResponse
 import com.levelup.movies.data.model.MovieListResponse
 import retrofit2.Call
@@ -19,10 +20,10 @@ interface MovieApi {
     fun getMovieById(@Path("id") id : Int) : Call<MovieItemResponse>
 
     @GET("movie/{id}/similar")
-    fun getSimilarMovie(@Path("id") id : Int) : Call<MovieListResponse>
+    fun getSimilarMovies(@Path("id") id : Int) : Call<MovieListResponse>
 
     @GET("genre/movie/list")
-    fun getGenreList() : Call<List<GenreResponse>>
+    fun getGenreList() : Call<GenreListResponse>
 
 
 

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="120dp"
-    android:layout_height="180dp"
+    android:id="@+id/movie_recycler_item_container"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_width="100dp"
+    android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:background="#404040"
+    android:layout_marginStart="4dp"
     android:layout_marginEnd="4dp">
 
+
     <ImageView
-        android:id="@+id/item_poster"
+        android:id="@+id/item_backdrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/movie_poster_placeholder"/>
@@ -18,9 +22,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text = "Custom movie"
+        tools:text = "Movie name"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:gravity="center"
         android:textSize="14sp"
+        android:textColor="@color/white"
         android:background = "@color/transparent_black_title_background"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

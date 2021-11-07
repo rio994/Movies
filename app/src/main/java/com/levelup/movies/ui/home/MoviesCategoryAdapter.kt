@@ -5,15 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.levelup.movies.R
 import com.levelup.movies.data.model.MovieItemResponse
+import com.levelup.movies.util.MovieCategory
+import com.levelup.movies.util.loadWithGlide
 import kotlinx.android.synthetic.main.movie_recycler_item.view.*
 
-class MoviesCategoryAdapter : RecyclerView.Adapter<MoviesCategoryAdapter.ViewHolder>() {
+class MoviesCategoryAdapter(private val listener : MovieCategoryAdapterListener,
+                            private val movieCategory: MovieCategory) : RecyclerView.Adapter<MoviesCategoryAdapter.ViewHolder>() {
 
     private var moviesList : List<MovieItemResponse> = listOf()
     private var context : Context? = null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
@@ -24,15 +27,14 @@ class MoviesCategoryAdapter : RecyclerView.Adapter<MoviesCategoryAdapter.ViewHol
         val current = moviesList[position]
         holder.apply {
             title.text = current.title
-            context?.let {
-                Glide.with(this.itemView)
-                    .load(current.getImageUrl())
-                    .centerCrop()
-                    .placeholder(it.resources.getDrawable(R.drawable.movie_poster_placeholder,null))
-                    .into(poster)
+            context.loadWithGlide(holder.backdrop, current.getBackdropUrl())
+            bodyContainer.setOnClickListener {
+                listener.onMovieCategoryItemClick(current.id, movieCategory)
             }
         }
     }
+
+
 
     override fun getItemCount(): Int {
         return moviesList.size
@@ -45,7 +47,8 @@ class MoviesCategoryAdapter : RecyclerView.Adapter<MoviesCategoryAdapter.ViewHol
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val title = itemView.item_title
-        val poster = itemView.item_poster
+        val backdrop = itemView.item_backdrop
+        val bodyContainer = itemView.movie_recycler_item_container
 
     }
 
